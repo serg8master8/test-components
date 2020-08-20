@@ -269,6 +269,9 @@ module.exports = function(webpackEnv) {
       // https://github.com/facebook/create-react-app/issues/5358
       runtimeChunk: {
         name: entrypoint => `runtime-${entrypoint.name}`,
+      },  {
+        test: /\.css$/,
+        loader: `style!css?importLoaders=1&modules&localIdentName=[name]__[local]___[hash:base64:5]!postcss`
       },
     },
     resolve: {
@@ -326,6 +329,10 @@ module.exports = function(webpackEnv) {
 
         // First, run the linter.
         // It's important to do this before Babel processes the JS.
+		    {
+			    test: /\.css$/,
+			    loader: `style!css?importLoaders=1&modules&localIdentName=[name]__[local]___[hash:base64:5]!postcss`
+		    },
         {
           test: /\.(js|mjs|jsx|ts|tsx)$/,
           enforce: 'pre',
